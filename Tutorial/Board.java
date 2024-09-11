@@ -83,6 +83,7 @@ class Board implements Ilayout, Cloneable {
 
     @Override
     public List<Ilayout> children() {
+<<<<<<< HEAD
         List<Ilayout> successors = new ArrayList<>();
         int emptyRow = 0;
         int emptyCol = 0;
@@ -117,6 +118,30 @@ class Board implements Ilayout, Cloneable {
         }
 
         return successors;
+=======
+        List<Ilayout> children = new ArrayList<>();
+        int[] emptyPos = findEmptyPosition(); // encontrar a posição do 0 (espaço vazio)
+
+        int row = emptyPos[0];
+        int col = emptyPos[1];
+
+        // Movimentos possíveis: cima, baixo, esquerda, direita
+        int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+        for (int[] direction : directions) {
+            int newRow = row + direction[0];
+            int newCol = col + direction[1];
+
+            if (isValidMove(newRow, newCol)) {
+                // Clonar o tabuleiro ANTES de fazer qualquer modificação
+                Board newBoard = this.clone();
+                newBoard.swap(row, col, newRow, newCol); // troca o 0 com a nova posição no clone
+                children.add(newBoard);
+            }
+        }
+
+        return children;
+>>>>>>> a79de880bf0d8190d62451903f67cbcdccb62074
     }
 
     @Override
@@ -130,14 +155,41 @@ class Board implements Ilayout, Cloneable {
         return 0;
     }
 
+    private int[] findEmptyPosition() {
+        for (int i = 0; i < dim; i++) {
+            for (int j = 0; j < dim; j++) {
+                if (board[i][j] == 0) {
+                    return new int[]{i, j};
+                }
+            }
+        }
+        throw new IllegalStateException("Empty space not found in the board");
+    }
+
+    private boolean isValidMove(int row, int col) {
+        return row >= 0 && row < dim && col >= 0 && col < dim;
+    }
+
+    // Método para trocar dois elementos no tabuleiro
+    private void swap(int row1, int col1, int row2, int col2) {
+        int temp = board[row1][col1];
+        board[row1][col1] = board[row2][col2];
+        board[row2][col2] = temp;
+    }
+
     @Override
     public Board clone() {
         try {
             Board clone = (Board) super.clone();
-            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            clone.board = new int[dim][dim];  // Cria uma nova matriz
+            for (int i = 0; i < dim; i++) {
+                // Faz a cópia profunda da matriz
+                clone.board[i] = Arrays.copyOf(this.board[i], dim);
+            }
             return clone;
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();
         }
     }
+
 }
