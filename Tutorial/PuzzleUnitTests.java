@@ -1,20 +1,13 @@
-<<<<<<< HEAD
+
+
 import org.testng.annotations.Test;
-=======
 
-import org.junit.Test;
-
->>>>>>> a79de880bf0d8190d62451903f67cbcdccb62074
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.List;
 
-<<<<<<< HEAD
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-=======
-import static org.junit.Assert.assertEquals;
->>>>>>> a79de880bf0d8190d62451903f67cbcdccb62074
 
 
 public class PuzzleUnitTests {
@@ -45,34 +38,8 @@ public class PuzzleUnitTests {
 
     @Test
     public void testChildren() {
-<<<<<<< HEAD
-        Board b = new Board("123456780"); // Estado inicial para teste
-        List<Ilayout> children = b.children();
-
-        // Espera-se 2 filhos para o estado "123456780"
-        assertEquals(2, children.size());
-
-        // Testa se os filhos estão corretos
-        boolean hasChild1 = false;
-        boolean hasChild2 = false;
-
-        for (Ilayout child : children) {
-            String childStr = child.toString();
-            if (childStr.equals("123456708")) { // Movimento para a direita
-                hasChild1 = true;
-            } else if (childStr.equals("123456807")) { // Movimento para baixo
-                hasChild2 = true;
-            }
-        }
-
-        assertTrue(hasChild1);
-        assertTrue(hasChild2);
-    }
-
-=======
         // Cria um tabuleiro inicial onde o espaço vazio (0) está no meio
         Board b = new Board("123405678");
->>>>>>> a79de880bf0d8190d62451903f67cbcdccb62074
 
         // Obtém a lista de filhos (movimentos possíveis)
         List<Ilayout> children = b.children();
@@ -91,5 +58,16 @@ public class PuzzleUnitTests {
         assertEquals(expectedChild2.toString(), children.get(1).toString());
         assertEquals(expectedChild3.toString(), children.get(2).toString());
         assertEquals(expectedChild4.toString(), children.get(3).toString());
+    }
+
+
+    @Test
+    public void testisGoal() {
+
+        // Cria um tabuleiro inicial onde o espaço vazio (0) está no meio
+        Board a = new Board("123405678");
+        Board b = new Board("123405678");
+
+        assertTrue(a.isGoal(b));
     }
 }

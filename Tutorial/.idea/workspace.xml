@@ -44,7 +44,7 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   }
 }</component>
-  <component name="RunManager" selected="TestNG.PuzzleUnitTests.testChildren">
+  <component name="RunManager" selected="TestNG.PuzzleUnitTests.testisGoal">
     <configuration name="PuzzleUnitTests" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Tutorial" />
       <option name="PACKAGE_NAME" value="" />
@@ -68,8 +68,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PuzzleUnitTests.testisGoal" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Tutorial" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PuzzleUnitTests" />
+      <option name="METHOD_NAME" value="testisGoal" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.PuzzleUnitTests.testisGoal" />
         <item itemvalue="TestNG.PuzzleUnitTests.testChildren" />
         <item itemvalue="TestNG.PuzzleUnitTests" />
       </list>

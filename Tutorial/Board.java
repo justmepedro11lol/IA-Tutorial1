@@ -83,42 +83,6 @@ class Board implements Ilayout, Cloneable {
 
     @Override
     public List<Ilayout> children() {
-<<<<<<< HEAD
-        List<Ilayout> successors = new ArrayList<>();
-        int emptyRow = 0;
-        int emptyCol = 0;
-
-        // Encontrar a posição da peça vazia (zero)
-        for (int i = 0; i < dim; i++) {
-            for (int j = 0; j < dim; j++) {
-                if (board[i][j] == 0) {
-                    emptyRow = i;
-                    emptyCol = j;
-                    break;
-                }
-            }
-        }
-
-        // Movimentos possíveis: cima, baixo, esquerda, direita
-        int[] rowMoves = {-1, 1, 0, 0};
-        int[] colMoves = {0, 0, -1, 1};
-
-        for (int move = 0; move < 4; move++) {
-            int newRow = emptyRow + rowMoves[move];
-            int newCol = emptyCol + colMoves[move];
-
-            if (newRow >= 0 && newRow < dim && newCol >= 0 && newCol < dim) {
-                // Criar uma nova configuração de tabuleiro após o movimento
-                Board newBoard = new Board(this.toString()); // Copia o estado atual
-                // Troca a peça vazia com a peça adjacente
-                newBoard.board[emptyRow][emptyCol] = newBoard.board[newRow][newCol];
-                newBoard.board[newRow][newCol] = 0;
-                successors.add(newBoard);
-            }
-        }
-
-        return successors;
-=======
         List<Ilayout> children = new ArrayList<>();
         int[] emptyPos = findEmptyPosition(); // encontrar a posição do 0 (espaço vazio)
 
@@ -141,13 +105,12 @@ class Board implements Ilayout, Cloneable {
         }
 
         return children;
->>>>>>> a79de880bf0d8190d62451903f67cbcdccb62074
     }
 
     @Override
     public boolean isGoal(Ilayout l) {
-        
-        return false;
+        Board goal = (Board) l;
+        return this.equals(goal);  // Compare o estado do tabuleiro atual com o tabuleiro objetivo
     }
 
     @Override
