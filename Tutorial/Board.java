@@ -50,7 +50,7 @@ class Board implements Ilayout, Cloneable {
     }
 
     public boolean equals(Object o) {
-// TO BE COMPLETED
+        if()
     }
 
     public int hashCode() {
