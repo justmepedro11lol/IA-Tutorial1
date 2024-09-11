@@ -50,6 +50,14 @@ class Board implements Ilayout, Cloneable {
                 '}';
     }
 
+    public boolean equals(Object o) {
+// TO BE COMPLETED
+    }
+
+    public int hashCode() {
+// TO BE COMPLETED
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
