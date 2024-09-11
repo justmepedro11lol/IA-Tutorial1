@@ -84,11 +84,12 @@ class Board implements Ilayout, Cloneable {
     @Override
     public List<Ilayout> children() {
         List<Ilayout> children = new ArrayList<>();
-        int[] emptyPos = findEmptyPosition();
+        int[] emptyPos = findEmptyPosition(); // encontrar a posição do 0 (espaço vazio)
 
         int row = emptyPos[0];
         int col = emptyPos[1];
 
+        // Movimentos possíveis: cima, baixo, esquerda, direita
         int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
         for (int[] direction : directions) {
@@ -96,13 +97,24 @@ class Board implements Ilayout, Cloneable {
             int newCol = col + direction[1];
 
             if (isValidMove(newRow, newCol)) {
+                // Clonar o tabuleiro ANTES de fazer qualquer modificação
                 Board newBoard = this.clone();
-                newBoard.swap(row, col, newRow, newCol);
+                newBoard.swap(row, col, newRow, newCol); // troca o 0 com a nova posição no clone
                 children.add(newBoard);
             }
         }
 
         return children;
+    }
+
+    @Override
+    public boolean isGoal(Ilayout l) {
+        return false;
+    }
+
+    @Override
+    public double getG() {
+        return 0;
     }
 
     private int[] findEmptyPosition() {
@@ -120,6 +132,7 @@ class Board implements Ilayout, Cloneable {
         return row >= 0 && row < dim && col >= 0 && col < dim;
     }
 
+    // Método para trocar dois elementos no tabuleiro
     private void swap(int row1, int col1, int row2, int col2) {
         int temp = board[row1][col1];
         board[row1][col1] = board[row2][col2];
@@ -127,23 +140,18 @@ class Board implements Ilayout, Cloneable {
     }
 
     @Override
-    public boolean isGoal(Ilayout l) {
-        return false;
-    }
-
-    @Override
-    public double getG() {
-        return 0;
-    }
-
-    @Override
     public Board clone() {
         try {
             Board clone = (Board) super.clone();
-            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            clone.board = new int[dim][dim];  // Cria uma nova matriz
+            for (int i = 0; i < dim; i++) {
+                // Faz a cópia profunda da matriz
+                clone.board[i] = Arrays.copyOf(this.board[i], dim);
+            }
             return clone;
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();
         }
     }
+
 }

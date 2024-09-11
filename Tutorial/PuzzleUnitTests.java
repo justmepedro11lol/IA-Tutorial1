@@ -52,9 +52,9 @@ public class PuzzleUnitTests {
         Board expectedChild4 = new Board("123450678"); // Mover para a direita
 
         // Compara os filhos gerados com os esperados
-        assertEquals(expectedChild1, children.get(0));
-        assertEquals(expectedChild2, children.get(1));
-        assertEquals(expectedChild3, children.get(2));
-        assertEquals(expectedChild4, children.get(3));
+        assertEquals(expectedChild1.toString(), children.get(0).toString());
+        assertEquals(expectedChild2.toString(), children.get(1).toString());
+        assertEquals(expectedChild3.toString(), children.get(2).toString());
+        assertEquals(expectedChild4.toString(), children.get(3).toString());
     }
 }
