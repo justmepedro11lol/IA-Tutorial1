@@ -1,8 +1,5 @@
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 class BestFirst {
 
@@ -21,7 +18,7 @@ class BestFirst {
             layout = l;
             father = n;
             if (father != null) {
-                g = father.g + l.getK();
+                g = father.g + l.getG();
             } else {
                 g = 0.0;
             }
@@ -71,5 +68,7 @@ class BestFirst {
         abertos.add(new State(s, null));
         List<State> sucs;
         // TO BE COMPLETED
+
+        return null;
     }
 }
