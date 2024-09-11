@@ -1,10 +1,9 @@
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class PuzzleUnitTests {
@@ -32,4 +31,6 @@ public class PuzzleUnitTests {
         assertEquals(b.toString(), writer.toString());
         pw.close();
     }
+
+
 }

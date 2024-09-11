@@ -82,7 +82,7 @@ class Board implements Ilayout, Cloneable {
 
     @Override
     public List<Ilayout> children() {
-        return null;
+
     }
 
     @Override
@@ -93,5 +93,16 @@ class Board implements Ilayout, Cloneable {
     @Override
     public double getG() {
         return 0;
+    }
+
+    @Override
+    public Board clone() {
+        try {
+            Board clone = (Board) super.clone();
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
