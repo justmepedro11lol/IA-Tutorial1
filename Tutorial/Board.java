@@ -45,15 +45,33 @@ class Board implements Ilayout, Cloneable {
 
     @Override
     public String toString() {
-        return "Board{" +
-                "board=" + Arrays.toString(board) +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        // Percorre as linhas da matriz
+        for (int i = 0; i < board.length; i++) {
+            // Percorre as colunas de cada linha
+            for (int j = 0; j < board[i].length; j++) {
+                if (board[i][j] == 0) {
+                    sb.append(" "); // Substitui 0 por um espaço
+                } else {
+                    sb.append(board[i][j]); // Adiciona o elemento da matriz
+                }
+            }
+            sb.append("\r\n"); // Adiciona uma nova linha após cada linha da matriz
+        }
+
+        return sb.toString();
     }
+
+
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Board board1 = (Board) o;
         return Arrays.equals(board, board1.board);
     }
@@ -62,7 +80,6 @@ class Board implements Ilayout, Cloneable {
     public int hashCode() {
         return Arrays.hashCode(board);
     }
-
 
     @Override
     public List<Ilayout> children() {
