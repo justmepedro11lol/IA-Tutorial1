@@ -109,9 +109,14 @@ class Board implements Ilayout, Cloneable {
 
     @Override
     public boolean isGoal(Ilayout l) {
-        Board temp = (Board) l;
-        return temp.equals(((Board) board);
+        if (!(l instanceof Board)) {
+            return false; // Retorna false se l não for uma instância de Board
+        }
+
+        Board otherBoard = (Board) l; // Faz o cast para Board
+        return Arrays.deepEquals(this.board, otherBoard.board); // Compara os dois tabuleiros
     }
+
 
     @Override
     public double getK() {
