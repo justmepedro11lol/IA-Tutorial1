@@ -1,4 +1,5 @@
 
+import java.util.Arrays;
 import java.util.List;
 
 interface Ilayout {
@@ -43,7 +44,9 @@ class Board implements Ilayout, Cloneable {
     }
 
     public String toString() {
-// TO BE COMPLETED
+        return "Board{" +
+                "board=" + Arrays.toString(board) +
+                '}';
     }
 
     public boolean equals(Object o) {
