@@ -4,7 +4,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 
 public class PuzzleUnitTests {
@@ -55,5 +55,30 @@ public class PuzzleUnitTests {
         assertEquals(expectedChild2.toString(), children.get(1).toString());
         assertEquals(expectedChild3.toString(), children.get(2).toString());
         assertEquals(expectedChild4.toString(), children.get(3).toString());
+    }
+
+
+    @Test
+    public void testIsGoalTrue() {
+        // Tabuleiro inicial
+        Board b = new Board("123456780");
+
+        // Tabuleiro objetivo (mesmo estado que b)
+        Board goal = new Board("123456780");
+
+        // Verifica se o tabuleiro atual é o objetivo
+        assertTrue(b.isGoal(goal));
+    }
+
+    @Test
+    public void testIsGoalFalse() {
+        // Tabuleiro inicial
+        Board b = new Board("123456780");
+
+        // Tabuleiro objetivo diferente
+        Board goal = new Board("123450678");
+
+        // Verifica se o tabuleiro atual NÃO é o objetivo
+        assertFalse(b.isGoal(goal));
     }
 }

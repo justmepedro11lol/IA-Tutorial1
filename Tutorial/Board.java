@@ -18,7 +18,7 @@ interface Ilayout {
     /**
      * @return the cost for moving from the input config to the receiver.
      */
-    double getG();
+    double getK();
 }
 
 class Board implements Ilayout, Cloneable {
@@ -109,11 +109,12 @@ class Board implements Ilayout, Cloneable {
 
     @Override
     public boolean isGoal(Ilayout l) {
-        return false;
+        Board temp = (Board) l;
+        return temp.equals(((Board) board);
     }
 
     @Override
-    public double getG() {
+    public double getK() {
         return 0;
     }
 
