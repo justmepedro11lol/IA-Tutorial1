@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -82,7 +83,47 @@ class Board implements Ilayout, Cloneable {
 
     @Override
     public List<Ilayout> children() {
-        return null;
+        List<Ilayout> children = new ArrayList<>();
+        int[] emptyPos = findEmptyPosition();
+
+        int row = emptyPos[0];
+        int col = emptyPos[1];
+
+        int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+        for (int[] direction : directions) {
+            int newRow = row + direction[0];
+            int newCol = col + direction[1];
+
+            if (isValidMove(newRow, newCol)) {
+                Board newBoard = this.clone();
+                newBoard.swap(row, col, newRow, newCol);
+                children.add(newBoard);
+            }
+        }
+
+        return children;
+    }
+
+    private int[] findEmptyPosition() {
+        for (int i = 0; i < dim; i++) {
+            for (int j = 0; j < dim; j++) {
+                if (board[i][j] == 0) {
+                    return new int[]{i, j};
+                }
+            }
+        }
+        throw new IllegalStateException("Empty space not found in the board");
+    }
+
+    private boolean isValidMove(int row, int col) {
+        return row >= 0 && row < dim && col >= 0 && col < dim;
+    }
+
+    private void swap(int row1, int col1, int row2, int col2) {
+        int temp = board[row1][col1];
+        board[row1][col1] = board[row2][col2];
+        board[row2][col2] = temp;
     }
 
     @Override
@@ -93,5 +134,16 @@ class Board implements Ilayout, Cloneable {
     @Override
     public double getG() {
         return 0;
+    }
+
+    @Override
+    public Board clone() {
+        try {
+            Board clone = (Board) super.clone();
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
