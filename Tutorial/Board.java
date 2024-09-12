@@ -18,7 +18,7 @@ interface Ilayout {
     /**
      * @return the cost for moving from the input config to the receiver.
      */
-    double getG();
+    double getK();
 }
 
 class Board implements Ilayout, Cloneable {
@@ -109,13 +109,18 @@ class Board implements Ilayout, Cloneable {
 
     @Override
     public boolean isGoal(Ilayout l) {
-        Board goal = (Board) l;
-        return this.equals(goal);  // Compare o estado do tabuleiro atual com o tabuleiro objetivo
-    }
+        if (!(l instanceof Board)) {
+            return false; // Retorna false se l não for uma instância de Board
+        }
+
+        Board otherBoard = (Board) l; // Faz o cast para Board
+        return Arrays.deepEquals(this.board, otherBoard.board); // Compara os dois tabuleiros
+}
+
 
     @Override
-    public double getG() {
-        return 0;
+    public double getK() {
+        return 1.0;
     }
 
     private int[] findEmptyPosition() {

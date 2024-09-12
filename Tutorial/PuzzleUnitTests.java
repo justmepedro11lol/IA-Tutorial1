@@ -6,8 +6,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class PuzzleUnitTests {
@@ -69,5 +68,7 @@ public class PuzzleUnitTests {
         Board b = new Board("123405678");
 
         assertTrue(a.isGoal(b));
+
+
     }
 }

@@ -18,7 +18,7 @@ class BestFirst {
             layout = l;
             father = n;
             if (father != null) {
-                g = father.g + l.getG();
+                g = father.g + l.getK();
             } else {
                 g = 0.0;
             }
