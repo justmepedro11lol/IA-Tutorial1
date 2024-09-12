@@ -66,9 +66,36 @@ class BestFirst {
                 (s1, s2) -> (int) Math.signum(s1.getG() - s2.getG()));
         fechados = new HashMap<>();
         abertos.add(new State(s, null));
-        List<State> sucs;
-        // TO BE COMPLETED
 
-        return null;
+        while (!abertos.isEmpty()) {
+            // Remove o estado com menor custo g da fila
+            actual = abertos.poll();
+
+            // Verifica se atingiu o objetivo
+            if (actual.layout.isGoal(objective)) {
+                // Reconstruir o caminho da solução
+                List<State> solution = new ArrayList<>();
+                State temp = actual;
+                while (temp != null) {
+                    solution.add(0, temp); // Adiciona no início da lista para formar o caminho
+                    temp = temp.father;
+                }
+                return solution.iterator(); // Retorna o iterador sobre a solução
+            }
+
+            // Se o estado atual não for o objetivo, adiciona aos fechados
+            fechados.put(actual.layout, actual);
+
+            // Gera sucessores
+            List<State> sucs = sucessores(actual);
+            for (State suc : sucs) {
+                if (!fechados.containsKey(suc.layout)) {
+                    abertos.add(suc); // Adiciona sucessores não explorados à fila
+                }
+            }
+        }
+
+        return null; // Se a fila ficar vazia e o objetivo não foi encontrado, retorna null
     }
+
 }
